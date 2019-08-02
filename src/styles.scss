@@ -22,6 +22,14 @@ button {
     margin-bottom: 15px;
   }
 
+  &[x-placement^="right"] {
+    margin-left: 15px;
+  }
+
+  &[x-placement^="left"] {
+    margin-right: 15px;
+  }
+
   &__arrow {
     width: 0;
     height: 0;
@@ -46,5 +54,17 @@ button {
     border-top-width: 0;
     border-bottom-color: #eee;
     top: -10px;
+  }
+
+  &[x-placement^="right"] &__arrow {
+    border-left-width: 0;
+    border-right-color: #eee;
+    left: -10px;
+  }
+
+  &[x-placement^="left"] &__arrow {
+    border-right-width: 0;
+    border-left-color: #eee;
+    right: -10px;
   }
 }
