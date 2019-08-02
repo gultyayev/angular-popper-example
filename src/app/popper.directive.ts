@@ -6,7 +6,7 @@ import {
   OnInit,
   Renderer2
 } from "@angular/core";
-import Popper, { PopperOptions } from "popper.js";
+import Popper, { Placement, PopperOptions } from "popper.js";
 import { fromEvent, merge, Subject } from "rxjs";
 import { filter, pluck, takeUntil } from "rxjs/operators";
 
@@ -17,7 +17,7 @@ export class PopperDirective implements OnInit, OnDestroy {
   // The hint to display
   @Input() target: HTMLElement;
   // Its positioning (check docs for available options)
-  @Input() placement?: string;
+  @Input() placement?: Placement;
   // Optional hint target if you desire using other element than specified one
   @Input() appPopper?: HTMLElement;
   // The popper instance
@@ -43,7 +43,10 @@ export class PopperDirective implements OnInit, OnDestroy {
     // An element to position the hint relative to
     const reference = this.appPopper ? this.appPopper : this.el.nativeElement;
 
-    this.popper = new Popper(reference, this.target, this.defaultConfig);
+    this.popper = new Popper(reference, this.target, {
+      ...this.defaultConfig,
+      placement: this.placement || this.defaultConfig.placement
+    });
 
     this.renderer.setStyle(this.target, "display", "none");
 
