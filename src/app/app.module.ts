@@ -2,10 +2,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
+import { PopperDirective } from './popper.directive';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PopperDirective
   ],
   imports: [
     BrowserModule
